@@ -11,17 +11,28 @@
       </div>
       <span class="movie-overview">{{ movie.overview }}</span>
       <div class="movie-buttons">
-        <button class="btn movie-buttons-watched">
+        <button
+          class="btn movie-buttons-watched"
+          @click="movieStore.toggleWatched(movie.id)"
+        >
           <span v-if="!movie.isWatched">Watched</span>
           <span v-else>Unwatched</span>
         </button>
-        <button class="btn movie-buttons-delete">Delete</button>
+        <button
+          class="btn movie-buttons-delete"
+          @click="movieStore.deleteMovie(movie.id)"
+        >
+          Delete
+        </button>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
+import { useMovieStore } from "../stores/MovieStore";
+
+const movieStore = useMovieStore();
 const props = defineProps({
   movie: {
     type: Object,
@@ -41,46 +52,38 @@ const props = defineProps({
   padding: 10px;
   border-radius: 10px;
 }
-
 .movie-accept {
   margin-right: 10px;
 }
-
 .movie-img {
   width: 200px;
   height: 200px;
   object-fit: cover;
   border-radius: 50%;
 }
-
 .movie-name {
   display: flex;
   align-items: center;
   font-size: 20px;
   margin-bottom: 20px;
 }
-
 .movie-overview {
   display: block;
   margin-bottom: 20px;
 }
-
 .movie-buttons {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-
 .movie-buttons-watched {
   color: #fff;
   background: #1eb4c3;
 }
-
 .movie-buttons-watched__icon {
   width: 15px;
   margin-left: 10px;
 }
-
 .movie-buttons-delete {
   color: #fff;
   background: #ff2a2a;
