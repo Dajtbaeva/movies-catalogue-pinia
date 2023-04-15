@@ -15,8 +15,7 @@
           class="btn movie-buttons-watched"
           @click="movieStore.toggleWatched(movie.id)"
         >
-          <span v-if="!movie.isWatched">Watched</span>
-          <span v-else>Unwatched</span>
+          <span>{{ movie.isWatched ? "Watched" : "Unwatched" }}</span>
         </button>
         <button
           class="btn movie-buttons-delete"
